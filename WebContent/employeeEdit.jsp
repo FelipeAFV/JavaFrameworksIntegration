@@ -28,20 +28,36 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container">
-		<h1>Edicion de empleado</h1>
-		<s:form action="editEmployee">
-			<s:textfield label="Id" name="employeeId" value="%{employee.id}"></s:textfield>
-			<s:textfield label="Nombre" name="firstName"
-				value="%{employee.firstName}"></s:textfield>
-			<s:textfield label="Apellido" name="lastName"
-				value="%{employee.lastName}"></s:textfield>
-			<s:textfield label="Sueldo" name="salary" value="%{employee.salary}"></s:textfield>
-			<s:textfield label="Id departamento" name="departmentId"
-				value="%{employee.dept.id}"></s:textfield>
-			<s:textfield label="Id manager" name="managerId"
-				value="%{employee.manager.id}"></s:textfield>
-			<s:submit value="Editar"></s:submit>
+	<div class="container col-sm-4">
+		
+		<s:form action="editEmployee" theme="simple" cssClass="">
+		  <div class="form-group">
+		    <label for="id">ID</label>
+		    <s:textfield id="id" label="Id" name="employeeId" cssClass="form-control" value="%{employee.id}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <label for="firstName">Nombre</label>
+		    <s:textfield id="firstName" label="Nombre" name="firstName" cssClass="form-control" value="%{employee.firstName}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <label for="lastName">Apellido</label>
+		    <s:textfield id="lastName" label="Apellido" name="lastName" cssClass="form-control" value="%{employee.lastName}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <label for="salary">Sueldo</label>
+		    <s:textfield id="salary" label="Sueldo" name="salary" cssClass="form-control" value="%{employee.salary}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <label for="department">ID Departamento</label>
+		    <s:textfield id="department" label="Id departamento" name="departmentId" cssClass="form-control" value="%{employee.dept.id}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <label for="manager">ID Manager</label>
+		    <s:textfield id="manager" label="Id manager" name="managerId" cssClass="form-control" value="%{employee.manager.id}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <s:submit value="Añadir" cssClass="btn btn-primary my-3"></s:submit>
+		  </div>
 		</s:form>
 	</div>
 
