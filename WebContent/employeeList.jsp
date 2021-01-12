@@ -13,14 +13,36 @@
 
 </head>
 <body>
-	<h1>Lista de empleados</h1>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<div >
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="${pageContext.servletContext.contextPath}/employeeForm.jsp">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="listEmployees.action">Ver empleados</a></li>
+
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+	
 	<div class="container">
-		<table class="table">
-			<tr>
+		<h1>Lista de empleados</h1>
+	</div>
+	
+	<div class="container">
+		<table class="table table-responsive table-bordered table-striped table-hover">
+			<thead class="table-dark">
+				<tr>
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Apellido</th>
+				<th class="col-2 center-block">Acciones</th>
 			</tr>
+			</thead>
+			
 			<%  List<Employee> emps = (List<Employee>) request.getAttribute("employees");
 				Iterator<Employee> itr = 	emps.iterator();
 				
@@ -28,16 +50,17 @@
 					Employee emp = itr.next();
 				
 			%>
-				<tr>
-					<td><%= emp.getId() %></td>
-					<td><%= emp.getFirstName()%></td>
-					<td><%= emp.getLastName() %></td>
-					<td>
-						<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/getDataForEdit?id=<%= emp.getId() %>">Editar</a>
-						<a class="btn btn-danger btn-sm" href="${pageContext.servletContext.contextPath}/employeeForm.jsp">Eliminar</a>
-					</td>
-				</tr>
-			
+				<tbody>
+					<tr>
+						<td><%= emp.getId() %></td>
+						<td><%= emp.getFirstName()%></td>
+						<td><%= emp.getLastName() %></td>
+						<td>
+							<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/getDataForEdit?id=<%= emp.getId() %>">Editar</a>
+							<a class="btn btn-danger btn-sm" href="${pageContext.servletContext.contextPath}/deleteEmployee?employeeId=<%= emp.getId() %>">Eliminar</a>
+						</td>
+					</tr>
+				</tbody>
 			
 			<%} %>
 		

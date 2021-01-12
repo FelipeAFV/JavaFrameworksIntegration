@@ -84,6 +84,39 @@ public class EmployeeAction  {
 		
 	}
 
+	@Action(value = "editEmployee", results = {@Result( type = "redirectAction", name = "success", location = "listEmployees"),
+			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/error.jsp")})
+	public String editEmployee() {
+		try {
+			Employee manager = new Employee();
+			manager.setId(Integer.parseInt(managerId));
+			Department department = new Department();
+			department.setId(Integer.parseInt(departmentId));
+			employee = new Employee(Integer.parseInt(employeeId), firstName, lastName, Double.parseDouble(salary),
+					manager, department);
+			empDao.updateEmployee(employee);
+			return "success";
+		} catch (Exception e) {
+			return "error";
+		}
+		
+	}
+	
+	@Action(value = "deleteEmployee", results = {@Result( type = "redirectAction", name = "success", location = "listEmployees"),
+			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/error.jsp")})
+	public String deleteEmployee() {
+		try {
+			
+			//El id es pasado a traves de la url, y struts se encarga de settear el
+			//id automaticamente, el parametro de la url debe llamarse igual que el atributo de
+			//esta clase
+			empDao.deleteEmployee(Integer.parseInt(employeeId));
+			return "success";
+		} catch (Exception e) {
+			return "error";
+		}
+	}
+	
 	public String getEmployeeId() {
 		return employeeId;
 	}
