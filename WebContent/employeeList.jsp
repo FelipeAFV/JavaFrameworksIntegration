@@ -33,7 +33,7 @@
 					<td><%= emp.getFirstName()%></td>
 					<td><%= emp.getLastName() %></td>
 					<td>
-						<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/employeeForm.jsp">Editar</a>
+						<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/getDataForEdit?id=<%= emp.getId() %>">Editar</a>
 						<a class="btn btn-danger btn-sm" href="${pageContext.servletContext.contextPath}/employeeForm.jsp">Eliminar</a>
 					</td>
 				</tr>
