@@ -14,20 +14,12 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<div>
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="listEmployees.action">Ver empleados</a></li>
-
-				</ul>
-
-			</div>
-		</div>
-	</nav>
+	
+	<div class="container text-center">
+	
+		<h1 class="display-4 my-4 text-center">Edición de empleado</h1>
+	</div>
+	
 	<div class="container col-sm-4">
 		
 		<s:form action="editEmployee" theme="simple" cssClass="">
