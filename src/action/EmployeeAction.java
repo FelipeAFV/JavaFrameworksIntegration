@@ -21,6 +21,7 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import model.Department;
 import model.Employee;
 import model.EmployeeDAO;
+import model.Job;
 
 
 public class EmployeeAction  {
@@ -31,6 +32,7 @@ public class EmployeeAction  {
 	private String salary;
 	private String departmentId;
 	private String managerId;
+	private String jobId;
 	private String message;
 	
 	private Employee employee;
@@ -52,8 +54,10 @@ public class EmployeeAction  {
 			manager.setId(Integer.parseInt(managerId));
 			Department department = new Department();
 			department.setId(Integer.parseInt(departmentId));
+			Job job = new Job();
+			job.setId(jobId);
 			employee = new Employee(Integer.parseInt(employeeId), firstName, lastName, Double.parseDouble(salary),
-					manager, department);
+					manager, department, job);
 			
 			empDao.addEmployee(employee);
 			return "success";
@@ -92,8 +96,10 @@ public class EmployeeAction  {
 			manager.setId(Integer.parseInt(managerId));
 			Department department = new Department();
 			department.setId(Integer.parseInt(departmentId));
+			Job job = new Job();
+			job.setId(jobId);
 			employee = new Employee(Integer.parseInt(employeeId), firstName, lastName, Double.parseDouble(salary),
-					manager, department);
+					manager, department, job);
 			empDao.updateEmployee(employee);
 			return "success";
 		} catch (Exception e) {
@@ -163,6 +169,14 @@ public class EmployeeAction  {
 
 	public void setManagerId(String managerId) {
 		this.managerId = managerId;
+	}
+	
+	public String getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(String jobId) {
+		this.jobId = jobId;
 	}
 
 	public String getMessage() {

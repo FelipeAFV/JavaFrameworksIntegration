@@ -10,6 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
+import service.SessionFactoryProvider;
+
 @Component("empDao")
 public class EmployeeDAOMySQL implements EmployeeDAO {
 

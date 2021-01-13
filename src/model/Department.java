@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,11 +18,12 @@ public class Department {
 	@Column(name = "department_id")
 	private int id;
 	
-	@Column(name = "min_salary")
-	private double minSalary;
+	@Column(name = "department_name")
+	private String name;
 	
-	@Column(name = "max_salary")
-	private double maxSalary;
+	@OneToOne
+	@JoinColumn(name = "manager_id", referencedColumnName = "employee_id")
+	private Employee manager;
 	
 	@OneToMany(mappedBy = "dept")
 	private List<Employee> employees;
@@ -30,23 +33,7 @@ public class Department {
 	public Department() {
 		super();
 	}
-
-	public Department(int id, double minSalary, double maxSalary, List<Employee> employees) {
-		super();
-		this.id = id;
-		this.minSalary = minSalary;
-		this.maxSalary = maxSalary;
-		this.employees = employees;
-	}
 	
-	
-
-	@Override
-	public String toString() {
-		return "Department [id=" + id + ", minSalary=" + minSalary + ", maxSalary=" + maxSalary + ", employees="
-				+ employees + "]";
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -55,20 +42,20 @@ public class Department {
 		this.id = id;
 	}
 
-	public double getMinSalary() {
-		return minSalary;
+	public String getName() {
+		return name;
 	}
 
-	public void setMinSalary(double minSalary) {
-		this.minSalary = minSalary;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public double getMaxSalary() {
-		return maxSalary;
+	public Employee getManager() {
+		return manager;
 	}
 
-	public void setMaxSalary(double maxSalary) {
-		this.maxSalary = maxSalary;
+	public void setManager(Employee manager) {
+		this.manager = manager;
 	}
 
 	public List<Employee> getEmployees() {
@@ -78,7 +65,21 @@ public class Department {
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
+
+	public Department(int id, String name, Employee manager, List<Employee> employees) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.manager = manager;
+		this.employees = employees;
+	}
+
+
 	
 	
+
+	
+	
+
 	
 }

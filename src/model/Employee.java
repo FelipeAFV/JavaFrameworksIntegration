@@ -51,13 +51,22 @@ public class Employee {
 	@JoinColumn(name = "department_id")
 	private Department dept;
 	
+	@ManyToOne
+	@JoinColumn(name = "job_id")
+	private Job job;
+	
 	
 
 	public Employee() {
 		super();
 	}
 	
-	public Employee(int id, String firstName, String lastName, double salary, Employee manager, Department dept) {
+	
+	
+	
+
+	public Employee(int id, String firstName, String lastName, double salary,
+			Employee manager, Department dept, Job job) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -65,14 +74,17 @@ public class Employee {
 		this.salary = salary;
 		this.manager = manager;
 		this.dept = dept;
+		this.job = job;
 	}
-	
-	
+
+
+
+
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", salary=" + salary
-				+ ", managerId=" + ", dept=" + dept.getId() + "]";
+				+ ", job="+ job + ", dept=" + dept.getId() + "]";
 	}
 
 	public int getId() {
@@ -130,6 +142,16 @@ public class Employee {
 	public void setDept(Department dept) {
 		this.dept = dept;
 	}
+	
+	public Job getJob() {
+		return job;
+	}
+	
+	public void setJob(Job job) {
+		this.job = job;
+	}
+	
+	
 	
 	
 	

@@ -46,6 +46,10 @@
 		    <s:textfield id="manager" label="Id manager" name="managerId" cssClass="form-control"></s:textfield>
 		  </div>
 		  <div class="form-group">
+		    <label for="job">ID Manager</label>
+		    <s:textfield id="job" label="Id cargo" name="jobId" cssClass="form-control"></s:textfield>
+		  </div>
+		  <div class="form-group">
 		    <s:submit value="Añadir" cssClass="btn btn-primary my-3"></s:submit>
 		  </div>
 		</s:form>
