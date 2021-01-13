@@ -19,7 +19,7 @@
 	  <filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
-
+		
 	</filter>
 	 
 	<filter-mapping>
@@ -42,6 +42,7 @@
 	     <param-name>debug</param-name>
 	     <param-value>true</param-value>
 	  </init-param>
+	  
 	</servlet>
 	
 	<servlet-mapping>

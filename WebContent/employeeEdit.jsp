@@ -44,11 +44,15 @@
 		    <s:textfield id="department" label="Id departamento" name="departmentId" cssClass="form-control" value="%{employee.dept.id}"></s:textfield>
 		  </div>
 		  <div class="form-group">
-		    <label for="manager">ID Manager</label>
+		    <label for="manager">ID Jefe</label>
 		    <s:textfield id="manager" label="Id manager" name="managerId" cssClass="form-control" value="%{employee.manager.id}"></s:textfield>
 		  </div>
 		  <div class="form-group">
-		    <s:submit value="Añadir" cssClass="btn btn-primary my-3"></s:submit>
+		    <label for="job">ID Cargo</label>
+		    <s:textfield id="job" label="Id Cargo" name="jobId" cssClass="form-control" value="%{employee.job.id}"></s:textfield>
+		  </div>
+		  <div class="form-group">
+		    <s:submit value="Editar" cssClass="btn btn-primary my-3"></s:submit>
 		  </div>
 		</s:form>
 	</div>
