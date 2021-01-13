@@ -3,10 +3,13 @@
     "http://getahead.org/dwr/dwr30.dtd">
 <dwr>
   <allow>
-    <create creator="new" javascript="JDate">
-      <param name="class" value="java.util.Date"/>
+    <create creator="new" javascript="EmpService">
+      <param name="class" value="service.EmployeeService"/>
     </create>
   
+  <create creator="new" javascript="JDate">
+      <param name="class" value="java.util.Date"/>
+    </create>
     
  
   </allow>

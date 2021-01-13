@@ -96,7 +96,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 	    <version>8.0.22</version>
 	</dependency>
 		
-			<dependency>
+	<dependency>
 	    <groupId>org.directwebremoting</groupId>
 	    <artifactId>dwr</artifactId>
 	    <version>3.0.2-RELEASE</version>
