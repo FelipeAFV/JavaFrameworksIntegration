@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ExceptionMapping;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import model.Employee;
 import model.EmployeeDAO;
 import model.Job;
 
-
+@InterceptorRef(value = "loginStack")
 public class EmployeeAction  {
 	
 	private int employeeId;
@@ -67,6 +68,7 @@ public class EmployeeAction  {
 			return "error";
 		}
 	}
+	
 	
 	@Action(value = "listEmployees", results = {@Result(name = "success", location = "/employeeList.jsp"),
 			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/error.jsp")})
