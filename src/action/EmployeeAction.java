@@ -26,12 +26,12 @@ import model.Job;
 
 public class EmployeeAction  {
 	
-	private String employeeId;
+	private int employeeId;
 	private String firstName;
 	private String lastName;
-	private String salary;
-	private String departmentId;
-	private String managerId;
+	private double salary;
+	private int departmentId;
+	private int managerId;
 	private String jobId;
 	private String message;
 	
@@ -46,17 +46,17 @@ public class EmployeeAction  {
 	
 	@Action(value = "insertEmployee", results = {@Result(name = "success", location = "/employeeInsertSuccess.jsp"),
 			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/employeeForm.jsp")}) 
-	@RequiredStringValidator(type = ValidatorType.SIMPLE,fieldName = "employeeId", message = "Se requiere un ID")
 	public String insertEmployee() {
 		
 		try {
+			System.out.println("Manager id = "+ managerId);
 			Employee manager = new Employee();
-			manager.setId(Integer.parseInt(managerId));
+			manager.setId(managerId);
 			Department department = new Department();
-			department.setId(Integer.parseInt(departmentId));
+			department.setId(departmentId);
 			Job job = new Job();
 			job.setId(jobId);
-			employee = new Employee(Integer.parseInt(employeeId), firstName, lastName, Double.parseDouble(salary),
+			employee = new Employee(employeeId, firstName, lastName, salary,
 					manager, department, job);
 			
 			empDao.addEmployee(employee);
@@ -93,12 +93,12 @@ public class EmployeeAction  {
 	public String editEmployee() {
 		try {
 			Employee manager = new Employee();
-			manager.setId(Integer.parseInt(managerId));
+			manager.setId(managerId);
 			Department department = new Department();
-			department.setId(Integer.parseInt(departmentId));
+			department.setId(departmentId);
 			Job job = new Job();
 			job.setId(jobId);
-			employee = new Employee(Integer.parseInt(employeeId), firstName, lastName, Double.parseDouble(salary),
+			employee = new Employee(employeeId, firstName, lastName, salary,
 					manager, department, job);
 			empDao.updateEmployee(employee);
 			return "success";
@@ -116,18 +116,18 @@ public class EmployeeAction  {
 			//El id es pasado a traves de la url, y struts se encarga de settear el
 			//id automaticamente, el parametro de la url debe llamarse igual que el atributo de
 			//esta clase
-			empDao.deleteEmployee(Integer.parseInt(employeeId));
+			empDao.deleteEmployee(employeeId);
 			return "success";
 		} catch (Exception e) {
 			return "error";
 		}
 	}
-	
-	public String getEmployeeId() {
+
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -147,30 +147,30 @@ public class EmployeeAction  {
 		this.lastName = lastName;
 	}
 
-	public String getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 
-	public void setSalary(String salary) {
+	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 
-	public String getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(String departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 
-	public String getManagerId() {
+	public int getManagerId() {
 		return managerId;
 	}
 
-	public void setManagerId(String managerId) {
+	public void setManagerId(int managerId) {
 		this.managerId = managerId;
 	}
-	
+
 	public String getJobId() {
 		return jobId;
 	}
@@ -185,14 +185,6 @@ public class EmployeeAction  {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public EmployeeDAO getEmpDao() {
-		return empDao;
-	}
-
-	public void setEmpDao(EmployeeDAO empDao) {
-		this.empDao = empDao;
 	}
 
 	public Employee getEmployee() {
@@ -210,7 +202,14 @@ public class EmployeeAction  {
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
-	
+
+	public EmployeeDAO getEmpDao() {
+		return empDao;
+	}
+
+	public void setEmpDao(EmployeeDAO empDao) {
+		this.empDao = empDao;
+	}
 	
 	
 
