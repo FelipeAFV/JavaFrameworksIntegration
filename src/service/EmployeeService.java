@@ -15,7 +15,7 @@ import model.Employee;
 
 public class EmployeeService {
 	
-	public void getJobInfo(int empId) {
+	public String getJobInfo(int empId) {
 		
 		Session s = SessionFactoryProvider.getSessionFactory().openSession();
 		
@@ -38,12 +38,13 @@ public class EmployeeService {
 			
 			
 			if (emp != null) {
-				System.out.println(emp);
+				return emp.getJob().getTitle();
 			} else {
-				System.out.println("El empleado con id " + empId + " no existe");
+				return "Undefined";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "error";
 			
 		} finally {
 			s.close();

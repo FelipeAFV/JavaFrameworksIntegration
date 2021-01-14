@@ -9,7 +9,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	
+  <script type='text/javascript' src='/DemoFrameworksProject/dwr/engine.js'></script>
+  <script type='text/javascript' src='/DemoFrameworksProject/dwr/interface/EmpService.js'></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" 
+  integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+   crossorigin="anonymous"></script>
+  
 
 </head>
 <body>
@@ -73,10 +83,11 @@
 						<td><%= emp.getDept().getId() %></td>
 					<%} %>
 					
-					<td><a class="btn btn-primary btn-sm"
-						href="${pageContext.request.contextPath}/getDataForEdit?id=<%= emp.getId() %>">Editar</a>
-						<a class="btn btn-danger btn-sm"
-						href="${pageContext.servletContext.contextPath}/deleteEmployee?employeeId=<%= emp.getId() %>">Eliminar</a>
+					<td class="text-center"><a class="btn btn-primary btn-sm m-1"
+						href="${pageContext.request.contextPath}/getDataForEdit?id=<%= emp.getId() %>"><i class="bi bi-pencil-square"></i></a>
+						<a class="btn btn-danger btn-sm m-1"
+						href="${pageContext.servletContext.contextPath}/deleteEmployee?employeeId=<%= emp.getId() %>"><i class="bi bi-trash"></i></a>
+						<a onclick="infoJob(<%= emp.getId() %>)" class="btn btn-success btn-sm m-1"><i class="bi bi-plus-square"></i></a>
 					</td>
 				</tr>
 			</tbody>
@@ -88,6 +99,41 @@
 		</table>
 
 	</div>
+	
+	<div class="modal" id="empModal" tabindex="-1">
+		
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					Información del empleado
+				</div>
+				
+				<div class="modal-body">
+					<p id="empInfo"></p>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	function infoJob(empId) {
+		EmpService.getJobInfo(empId,{
+			callback: function (jobTitle) {
+				$("#empInfo").text("Cargo: " + jobTitle);
+				$("#empModal").modal("show");
+			}
+			});
+
+	}
+		
+
+
+	</script>
 
 </body>
 </html>
