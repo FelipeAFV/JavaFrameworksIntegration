@@ -33,7 +33,7 @@ public class EmployeeEditSupportAction extends ActionSupport {
 	
 	
 	@Override
-	public String execute() throws Exception {
+	public String execute() {
 		try {
 			
 			System.out.println(id);

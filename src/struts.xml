@@ -64,11 +64,17 @@
 	</action>
 
 	<action name="checkUser" class="action.LoginAction">
-	    <result name="success">employeeForm.jsp</result>
+	    <result name="success">index.jsp</result>
 	    <result name="error">error.jsp</result>
 	</action>
 	
 	<action name="logout" class="action.LoginAction" method="logout">
+	    <result name="success">index.jsp</result>
+	    <result name="error">error.jsp</result>
+	</action>
+	
+	<action name="redirectEmpForm" class="action.UrlAction" method="redirectEmpForm">
+		<interceptor-ref name="loginStack"></interceptor-ref>
 	    <result name="success">employeeForm.jsp</result>
 	    <result name="error">error.jsp</result>
 	</action>
