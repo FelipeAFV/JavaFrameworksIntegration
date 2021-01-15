@@ -6,7 +6,7 @@
 <struts>
    
     <package name="mypackege" extends="struts-default">
-    
+    	
 
          <interceptors>
          
@@ -24,11 +24,57 @@
          </interceptors>
          
 
+	<global-results>
+		<!-- type=redirect, redirige a la url enviando un nuevo request
+		que no está asociado al contexto de la accion que lo generó -->
+        <result name="login" type="redirect">/login.jsp</result>
+    </global-results>
+		
 <!--          <default-interceptor-ref name="loginStack"/> -->
-         
+    <action name="insertEmployee" class="action.EmployeeAction" method="insertEmployee">
+    	<interceptor-ref name="params"></interceptor-ref>
+			<interceptor-ref name="loginStack"></interceptor-ref>
+	    <result name="success">employeeInsertSuccess.jsp</result>
+	    <result name="error">error.jsp</result>
+	</action>
+	
+	<action name="listEmployees" class="action.EmployeeAction" method="listEmployees">
+		<interceptor-ref name="params"></interceptor-ref>
+			<interceptor-ref name="loginStack"></interceptor-ref>
+	    <result name="success">employeeList.jsp</result>
+	    <result name="error">error.jsp</result>
+	</action>
+	
+	<action name="editEmployee" class="action.EmployeeAction" method="editEmployee">
+		<interceptor-ref name="params"></interceptor-ref>
+			<interceptor-ref name="loginStack"></interceptor-ref>
+	    <result name="success" type="redirectAction">
+            <param name="actionName">listEmployees</param>
+        </result>
+	    <result name="error">error.jsp</result>
+	</action>
+	
+	<action name="deleteEmployee" class="action.EmployeeAction" method="deleteEmployee">
+		<interceptor-ref name="params"></interceptor-ref>
+			<interceptor-ref name="loginStack"></interceptor-ref>
+	    <result name="success" type="redirectAction">
+            <param name="actionName">listEmployees</param>
+        </result>
+	    <result name="error">error.jsp</result>
+	</action>
 
+	<action name="checkUser" class="action.LoginAction">
+	    <result name="success">employeeForm.jsp</result>
+	    <result name="error">error.jsp</result>
+	</action>
+	
+	<action name="logout" class="action.LoginAction" method="logout">
+	    <result name="success">employeeForm.jsp</result>
+	    <result name="error">error.jsp</result>
+	</action>
     </package>
     
     <constant name="struts.action.excludePattern" value="/dwr/test/.*,/dwr/.*"/>
     
+
 </struts>

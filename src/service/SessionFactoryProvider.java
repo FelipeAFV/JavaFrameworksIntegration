@@ -8,6 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 import model.Department;
 import model.Employee;
 import model.Job;
+import model.User;
 
 public class SessionFactoryProvider {
 
@@ -20,6 +21,7 @@ public class SessionFactoryProvider {
 			conf.addAnnotatedClass(Employee.class);
 			conf.addAnnotatedClass(Department.class);
 			conf.addAnnotatedClass(Job.class);
+			conf.addAnnotatedClass(User.class);
 			ServiceRegistry sreg = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
 			sf = conf.buildSessionFactory(sreg);
 		}

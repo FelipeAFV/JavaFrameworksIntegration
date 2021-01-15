@@ -24,9 +24,13 @@ import model.Employee;
 import model.EmployeeDAO;
 import model.Job;
 
-@InterceptorRef(value = "loginStack")
-public class EmployeeAction  {
+
+public class EmployeeAction extends ActionSupport {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int employeeId;
 	private String firstName;
 	private String lastName;
@@ -44,9 +48,12 @@ public class EmployeeAction  {
 	@Qualifier("empDao")
 	EmployeeDAO empDao;
 	
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		return "success";
+	}
 	
-	@Action(value = "insertEmployee", results = {@Result(name = "success", location = "/employeeInsertSuccess.jsp"),
-			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/employeeForm.jsp")}) 
 	public String insertEmployee() {
 		
 		try {
@@ -70,8 +77,7 @@ public class EmployeeAction  {
 	}
 	
 	
-	@Action(value = "listEmployees", results = {@Result(name = "success", location = "/employeeList.jsp"),
-			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/error.jsp")})
+
 	public String listEmployees() {
 		System.out.println("Listando empleados 1");
 		try {
@@ -90,8 +96,6 @@ public class EmployeeAction  {
 		
 	}
 
-	@Action(value = "editEmployee", results = {@Result( type = "redirectAction", name = "success", location = "listEmployees"),
-			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/error.jsp")})
 	public String editEmployee() {
 		try {
 			Employee manager = new Employee();
@@ -110,8 +114,7 @@ public class EmployeeAction  {
 		
 	}
 	
-	@Action(value = "deleteEmployee", results = {@Result( type = "redirectAction", name = "success", location = "listEmployees"),
-			@Result(name = "error", location = "/error.jsp"), @Result(name = "input", location = "/error.jsp")})
+
 	public String deleteEmployee() {
 		try {
 			
